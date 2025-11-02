@@ -1,0 +1,31 @@
+# Task 3: Bivariate Analysis
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv("clean_data.csv")
+
+# ----- Categorical vs. Categorical -----
+ct = pd.crosstab(df["Category"], df["Segment"])
+ct.plot(kind="bar", stacked=True)
+plt.title("Stacked Bar Chart")
+plt.show()
+
+sns.catplot(x="Category", hue="Segment", data=df, kind="bar")
+plt.title("Grouped Bar Chart")
+plt.show()
+
+# ----- Continuous vs. Continuous -----
+sns.scatterplot(x="Sales", y="Profit", data=df)
+plt.title("Scatterplot with Fit Line")
+sns.regplot(x="Sales", y="Profit", data=df, scatter=False, color='red')
+plt.show()
+
+# ----- Categorical vs. Continuous -----
+sns.boxplot(x="Category", y="Profit", data=df)
+plt.title("Box Plot")
+plt.show()
+
+sns.violinplot(x="Category", y="Profit", data=df)
+plt.title("Violin Plot")
+plt.show()

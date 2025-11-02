@@ -1,0 +1,21 @@
+ #Task 8: Geospatial Visualization
+import geopandas as gpd
+import folium
+
+world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
+
+# Static Map (Matplotlib)
+world.plot(figsize=(10,6))
+plt.title("World Map - Static")
+plt.show()
+
+# Interactive Map (Folium)
+m = folium.Map(location=[20, 0], zoom_start=2)
+folium.Choropleth(
+    geo_data=world,
+    data=world,
+    columns=["iso_a3", "pop_est"],
+    key_on="feature.id",
+    fill_color="YlGnBu"
+).add_to(m)
+m.save("geospatial_map.html")

@@ -1,0 +1,16 @@
+# Task 4: Multivariate Analysis
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.read_csv("clean_data.csv")
+
+# Scatterplot Matrix
+sns.pairplot(df[["Sales", "Profit", "Discount"]])
+plt.show()
+
+# Parallel Coordinates
+from pandas.plotting import parallel_coordinates
+parallel_coordinates(df[["Category", "Sales", "Profit", "Discount"]], "Category")
+plt.title("Parallel Coordinates Plot")
+plt.show()

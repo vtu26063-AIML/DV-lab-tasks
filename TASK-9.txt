@@ -1,0 +1,24 @@
+# Task 9: Time-Oriented Data Visualization
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("sales_timeseries.csv")
+df['Order Date'] = pd.to_datetime(df['Order Date'])
+
+# Line Graph
+sns.lineplot(x='Order Date', y='Sales', data=df)
+plt.title("Sales Trend Over Time")
+plt.show()
+
+# Trend Line
+df['Month'] = df['Order Date'].dt.to_period('M')
+monthly = df.groupby('Month')['Sales'].sum().reset_index()
+sns.lineplot(x='Month', y='Sales', data=monthly)
+plt.title("Monthly Sales Trend")
+plt.show()
+
+# Area Chart
+monthly.plot(x='Month', y='Sales', kind='area', alpha=0.6)
+plt.title("Area Chart of Sales Over Time")
+plt.show()

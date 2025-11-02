@@ -1,0 +1,44 @@
+# Task 2: Univariate Analysis
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("clean_data.csv")
+
+# ----- Categorical Data -----
+sns.countplot(x="Category", data=df)
+plt.title("Bar Chart - Category")
+plt.show()
+
+df["Category"].value_counts().plot.pie(autopct='%1.1f%%')
+plt.title("Pie Chart - Category")
+plt.show()
+
+# ----- Continuous Data -----
+sns.scatterplot(x=range(len(df)), y="Price", data=df)
+plt.title("Scatter Plot - Price")
+plt.show()
+
+sns.lineplot(x=range(len(df)), y="Price", data=df)
+plt.title("Line Plot - Price")
+plt.show()
+
+sns.stripplot(x="Category", y="Price", data=df)
+plt.title("Strip Plot")
+plt.show()
+
+sns.swarmplot(x="Category", y="Price", data=df)
+plt.title("Swarm Plot")
+plt.show()
+
+sns.histplot(df["Price"], kde=False)
+plt.title("Histogram - Price")
+plt.show()
+
+sns.kdeplot(df["Price"], fill=True)
+plt.title("Density Plot - Price")
+plt.show()
+
+sns.rugplot(df["Price"])
+plt.title("Rug Plot - Price")
+plt.show()

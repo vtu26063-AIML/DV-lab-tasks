@@ -1,0 +1,17 @@
+# Task 5: Tree Visualization
+import plotly.express as px
+import pandas as pd
+
+df = pd.DataFrame({
+    "Region": ["East", "East", "West", "West"],
+    "Category": ["Furniture", "Technology", "Furniture", "Office Supplies"],
+    "Sales": [40000, 35000, 30000, 25000]
+})
+
+# Treemap
+fig = px.treemap(df, path=['Region', 'Category'], values='Sales', title="Treemap")
+fig.show()
+
+# Sunburst
+fig = px.sunburst(df, path=['Region', 'Category'], values='Sales', title="Sunburst")
+fig.show()
